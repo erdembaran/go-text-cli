@@ -6,6 +6,7 @@ A command-line tool written in Go for analyzing text properties.
 
 - Count total characters (including spaces)
 - Count characters excluding spaces
+- Count total words in text
 - Detailed help command
 
 ## Installation
@@ -39,6 +40,12 @@ go run main.go -all "Your text here"
 go run main.go -nospace "Your text here"
 ```
 
+### Count Words
+
+```bash
+go run main.go -words "Your text here"
+```
+
 ### Show Help
 
 ```bash
@@ -55,6 +62,10 @@ go run main.go -all "Hello World"
 # Count characters excluding spaces
 go run main.go -nospace "Hello World"
 > Total characters (excluding spaces): 10
+
+# Count total words
+go run main.go -words "Hello World"
+> Total words: 2
 ```
 
 ## Command Reference
@@ -63,6 +74,7 @@ go run main.go -nospace "Hello World"
 | ---------- | ------------------------------------- | --------------------------------------- |
 | `-all`     | Count all characters including spaces | `go run main.go -all "Hello World"`     |
 | `-nospace` | Count characters excluding spaces     | `go run main.go -nospace "Hello World"` |
+| `-words`   | Count total words in text             | `go run main.go -words "Hello World"`   |
 | `-help`    | Show help message                     | `go run main.go -help`                  |
 
 ## Requirements
