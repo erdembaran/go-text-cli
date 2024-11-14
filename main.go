@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strings"
 )
 
 // showHelp prints detailed usage information
@@ -13,6 +14,7 @@ func showHelp() {
 	Commands:
 		-all        Count all characters including spaces
 		-nospace    Count characters excluding spaces
+		-words      Count total words
 		-help       Show this help message
 	
 	Usage:
@@ -24,6 +26,9 @@ func showHelp() {
 		
 		go run main.go -nospace "Hello World"
 			Count characters excluding spaces
+
+		go run main.go -words "Hello World"
+            Count total words
 	
 	Note:
 		Text should be enclosed in quotes if it contains spaces
@@ -33,6 +38,11 @@ func showHelp() {
 
 func countCharacters(text string) int {
 	return len(text)
+}
+
+func countWords(text string) int {
+	words := strings.Fields(text)
+	return len(words)
 }
 
 func countCharactersWithoutSpaces(text string) int {
@@ -51,6 +61,7 @@ func main() {
 	// Define flags
 	allCharsCmd := flag.Bool("all", false, "Count all characters including spaces")
 	noSpaceCmd := flag.Bool("nospace", false, "Count characters excluding spaces")
+	wordsCmd := flag.Bool("words", false, "Count total words")
 	helpCmd := flag.Bool("help", false, "Show help message")
 
 	// Parse the flags
@@ -78,7 +89,10 @@ func main() {
 	} else if *noSpaceCmd {
 		count := countCharactersWithoutSpaces(inputText)
 		fmt.Printf("Total characters (excluding spaces): %d\n", count)
-	} else {
+	} else if *wordsCmd {
+        count := countWords(inputText)
+        fmt.Printf("Total words: %d\n", count)
+    } else {
 		fmt.Println("Please specify a command. Use -help to see available commands")
 	}
 }
