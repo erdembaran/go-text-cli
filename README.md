@@ -59,11 +59,11 @@ go run main.go -nospace "Hello World"
 
 ## Command Reference
 
-| Command    | Description                           | Example                           |
-| ---------- | ------------------------------------- | --------------------------------- |
-| `-all`     | Count all characters including spaces | `go run main.go -all "Hello"`     |
-| `-nospace` | Count characters excluding spaces     | `go run main.go -nospace "Hello"` |
-| `-help`    | Show help message                     | `go run main.go -help`            |
+| Command    | Description                           | Example                                 |
+| ---------- | ------------------------------------- | --------------------------------------- |
+| `-all`     | Count all characters including spaces | `go run main.go -all "Hello World"`     |
+| `-nospace` | Count characters excluding spaces     | `go run main.go -nospace "Hello World"` |
+| `-help`    | Show help message                     | `go run main.go -help`                  |
 
 ## Requirements
 
