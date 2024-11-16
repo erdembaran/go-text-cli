@@ -15,20 +15,11 @@ func showHelp() {
 		-all        Count all characters including spaces
 		-nospace    Count characters excluding spaces
 		-words      Count total words
+		-wordlen    Show longest and shortest words
 		-help       Show this help message
 	
 	Usage:
 		go run main.go [command] "your text"
-	
-	Examples:
-		go run main.go -all "Hello World"
-			Count all characters including spaces
-		
-		go run main.go -nospace "Hello World"
-			Count characters excluding spaces
-
-		go run main.go -words "Hello World"
-            Count total words
 	
 	Note:
 		Text should be enclosed in quotes if it contains spaces
@@ -56,12 +47,35 @@ func countCharactersWithoutSpaces(text string) int {
 	return count
 }
 
+func findWordExtremes(text string) (longest, shortest string) {
+	words := strings.Fields(text)
+
+	if len(words) == 0 {
+        return "", ""
+    }
+
+	longest = words[0]
+	shortest = words[0]
+
+	for _, word := range words {
+		if len(word) > len(longest) {
+			longest = word
+		}
+		if len(word) < len(shortest) {
+			shortest = word
+		}
+	}
+
+	return longest, shortest
+}
+
 func main() {
 
 	// Define flags
 	allCharsCmd := flag.Bool("all", false, "Count all characters including spaces")
 	noSpaceCmd := flag.Bool("nospace", false, "Count characters excluding spaces")
 	wordsCmd := flag.Bool("words", false, "Count total words")
+	wordExtremeCmd := flag.Bool("wordlen", false, "Find longest and shortest words")
 	helpCmd := flag.Bool("help", false, "Show help message")
 
 	// Parse the flags
@@ -92,7 +106,15 @@ func main() {
 	} else if *wordsCmd {
         count := countWords(inputText)
         fmt.Printf("Total words: %d\n", count)
-    } else {
+    } else if *wordExtremeCmd {
+		longest, shortest := findWordExtremes(inputText)
+		if longest == "" && shortest == "" {
+			fmt.Println("No words found in input")
+		} else {
+			fmt.Printf("Longest word (%d chars): %s\n", len(longest), longest)
+			fmt.Printf("Shortest word (%d chars): %s\n", len(shortest), shortest)
+		}
+	} else {
 		fmt.Println("Please specify a command. Use -help to see available commands")
 	}
 }

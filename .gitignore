@@ -16,3 +16,6 @@
 
 # Go workspace file
 go.work
+
+# Features file
+features.txt
