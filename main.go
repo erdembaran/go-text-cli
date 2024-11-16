@@ -16,6 +16,7 @@ func showHelp() {
 		-nospace    Count characters excluding spaces
 		-words      Count total words
 		-wordlen    Show longest and shortest words
+		-readtime   Estimate reading time (based on 225 WPM)
 		-help       Show this help message
 	
 	Usage:
@@ -69,6 +70,15 @@ func findWordExtremes(text string) (longest, shortest string) {
 	return longest, shortest
 }
 
+func readingEstimationTime(wordCount int) float64 {
+
+	var averageReadWPM float64 = 225
+
+	var readingTimeInMinutes float64 = float64(wordCount) / float64(averageReadWPM)
+
+	return readingTimeInMinutes
+}
+
 func main() {
 
 	// Define flags
@@ -76,6 +86,7 @@ func main() {
 	noSpaceCmd := flag.Bool("nospace", false, "Count characters excluding spaces")
 	wordsCmd := flag.Bool("words", false, "Count total words")
 	wordExtremeCmd := flag.Bool("wordlen", false, "Find longest and shortest words")
+	readingEstimation := flag.Bool("readtime", false, "Estimate the reading time")
 	helpCmd := flag.Bool("help", false, "Show help message")
 
 	// Parse the flags
@@ -113,6 +124,25 @@ func main() {
 		} else {
 			fmt.Printf("Longest word (%d chars): %s\n", len(longest), longest)
 			fmt.Printf("Shortest word (%d chars): %s\n", len(shortest), shortest)
+		}
+	} else if *readingEstimation {
+		count := countWords(inputText)
+		readingTime := readingEstimationTime(count)
+		
+		if readingTime < 1 {
+			fmt.Printf("Average reading time: %.0f seconds\n", readingTime*60)
+		} else if readingTime == 1 {
+			fmt.Println("Average reading time: 1 minute")
+		} else {
+			minutes := int(readingTime)
+			seconds := int((readingTime - float64(minutes)) * 60)
+			
+			if seconds >= 1 {
+				fmt.Printf("Average reading time: %d minutes %d seconds\n", minutes, seconds)
+			} else {
+				fmt.Printf("Average reading time: %d minutes\n", minutes)
+			}
+
 		}
 	} else {
 		fmt.Println("Please specify a command. Use -help to see available commands")
