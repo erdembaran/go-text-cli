@@ -7,6 +7,7 @@ A Go-powered CLI tool that counts anything in your text with a single command.
 - Count total characters (including spaces)
 - Count characters excluding spaces
 - Count total words in text
+- Find longest and shortest words in text (with character count)
 - Detailed help command
 
 ## Installation
