@@ -1,6 +1,6 @@
 # Go Text CLI
 
-A command-line tool written in Go for analyzing text properties.
+A Go-powered CLI tool that counts anything in your text with a single command.
 
 ## Features
 
