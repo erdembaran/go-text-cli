@@ -6,8 +6,36 @@ import (
 	"strings"
 )
 
+// Function to display a banner
+func showBanner() {
+    banner := `
+
+        GGGGGGGGGGGGG                         CCCCCCCCCCCCCLLLLLLLLLLL             IIIIIIIIII
+     GGG::::::::::::G                      CCC::::::::::::CL:::::::::L             I::::::::I
+   GG:::::::::::::::G                    CC:::::::::::::::CL:::::::::L             I::::::::I
+  G:::::GGGGGGGG::::G                   C:::::CCCCCCCC::::CLL:::::::LL             II::::::II
+ G:::::G       GGGGGG   ooooooooooo    C:::::C       CCCCCC  L:::::L                 I::::I  
+G:::::G               oo:::::::::::oo C:::::C                L:::::L                 I::::I  
+G:::::G              o:::::::::::::::oC:::::C                L:::::L                 I::::I  
+G:::::G    GGGGGGGGGGo:::::ooooo:::::oC:::::C                L:::::L                 I::::I  
+G:::::G    G::::::::Go::::o     o::::oC:::::C                L:::::L                 I::::I  
+G:::::G    GGGGG::::Go::::o     o::::oC:::::C                L:::::L                 I::::I  
+G:::::G        G::::Go::::o     o::::oC:::::C                L:::::L                 I::::I  
+ G:::::G       G::::Go::::o     o::::o C:::::C       CCCCCC  L:::::L         LLLLLL  I::::I  
+  G:::::GGGGGGGG::::Go:::::ooooo:::::o  C:::::CCCCCCCC::::CLL:::::::LLLLLLLLL:::::LII::::::II
+   GG:::::::::::::::Go:::::::::::::::o   CC:::::::::::::::CL::::::::::::::::::::::LI::::::::I
+     GGG::::::GGG:::G oo:::::::::::oo      CCC::::::::::::CL::::::::::::::::::::::LI::::::::I
+        GGGGGG   GGGG   ooooooooooo           CCCCCCCCCCCCCLLLLLLLLLLLLLLLLLLLLLLLLIIIIIIIIII
+                                                                        
+`
+    fmt.Println(banner)
+}
+
+
+
 // showHelp prints detailed usage information
 func showHelp() {
+	showBanner()
 	fmt.Println(`
 	Text Processor - A tool for analyzing text
 	
